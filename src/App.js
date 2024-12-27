@@ -65,7 +65,7 @@ function App() {
     <section className="p-4 flex min-h-screen bg-zinc-900">
       <div className="justify-center w-full max-w-3xl p-4 bg-zinc-950 rounded-lg">
         <h1 className="text-white text-xl font-bold mb-4">
-          Stupid af Simple Object Detection
+          Simple Object Detection
         </h1>
         <Webcam
           ref={webcamRef}
