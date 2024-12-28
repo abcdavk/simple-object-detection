@@ -5,10 +5,13 @@ import { ObjectDetection } from "./components/ObjectDetection";
 function App() {
   const { webcamRef, intervalRef, prediction } = ObjectDetection();
   return (
-    <section className="p-4 flex min-h-screen bg-zinc-900 justify-center">
-      <Camera webcamRef={webcamRef} intervalRef={intervalRef} prediction={prediction}/>
-      {/* <ResultSide prediction={prediction} /> */}
-    </section>
+    <div className="p-4 bg-zinc-900">
+      <section className="flex min-h-screen justify-center">
+        <Camera webcamRef={webcamRef} intervalRef={intervalRef} prediction={prediction}/>
+        {/* <ResultSide prediction={prediction} /> */}
+        
+      </section>
+    </div>
   );
 }
 
