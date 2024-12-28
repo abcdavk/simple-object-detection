@@ -1,17 +1,17 @@
 import Webcam from "react-webcam";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 export default function Camera({ webcamRef, intervalRef, prediction }) {
   const canvasRef = useRef(null);
   const intervalCanvasRef = useRef(null);
   const [facingMode, setFacingMode] = useState("environment");
-  useEffect(() => {
-    const isMobile = /Android|iPhone/i.test(
-      navigator.userAgent
+  const handleClick = useCallback(() => {
+    setFacingMode(
+      prevState =>
+        prevState === facingMode
+          ? 'environtment'
+          : 'user'
     );
-    if (isMobile) {
-      setFacingMode("user");
-    }
   }, []);
 
   function setCanvas() {
@@ -86,6 +86,10 @@ export default function Camera({ webcamRef, intervalRef, prediction }) {
     console.log("Interval stopped.");
   };
 
+  function switchCam() {
+
+  }
+
   return (
     <div className="justify-center w-full max-w-3xl p-4 bg-zinc-950 rounded-lg">
       <nav className="lg:mb-16 mb-12 py-5 px-5 w-full rounded-lg bg-blue-500/10">
@@ -94,6 +98,8 @@ export default function Camera({ webcamRef, intervalRef, prediction }) {
             <h1 className="text-white text-xl font-bold mb-4">Simple Object Detection</h1>
           </div>
           <div className="flex flex-row gap-4 mt-6 md:mt-0 md:ml-auto items-center">
+          <button onClick={handleClick} className="flex align-middle relative text-white bg-zinc-950 px-2 py-2 rounded-full hover:rounded-lg hover:bg-zinc-700 transition">Switch camera</button>
+            
             <button
               onClick={stopInterval}
               className="flex align-middle relative text-white bg-zinc-950 px-2 py-2 rounded-full hover:rounded-lg hover:bg-zinc-700 transition"
@@ -103,7 +109,7 @@ export default function Camera({ webcamRef, intervalRef, prediction }) {
           </div>
         </div>
       </nav>
-      <div className="w-full h-3/4">
+      <div className="w-full">
         <div className="relative">
           {/* Video camera */}
           <Webcam
@@ -122,6 +128,7 @@ export default function Camera({ webcamRef, intervalRef, prediction }) {
             className="rounded-md absolute top-0 left-0 w-full"
             style={{ pointerEvents: "none" }}
           />
+          Loading...
         </div>
       </div>
     </div>
