@@ -27,7 +27,7 @@ export function ObjectDetection() {
   useEffect(() => {
 
     if (model) {
-      intervalRef.current = setInterval(detectObjects, 200);
+      intervalRef.current = setInterval(detectObjects, 100);
     }
 
     return () => {
